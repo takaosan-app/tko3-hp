@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tko3servs — Simple APIs & Tools</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sage: {
+          50:'#f2f5ef', 100:'#dde8d7', 200:'#bdd4b3', 300:'#96b888',
+          400:'#6e9b5e', 500:'#4f7d42', 600:'#3b6130', 700:'#2e4d25',
+          800:'#233c1b', 900:'#162511'
+        }
+      },
+      fontFamily: {
+        serif:['"DM Serif Display"','Georgia','serif'],
+        sans:['"DM Sans"','system-ui','sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-sage-50 text-sage-900 font-sans font-light">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-sage-50/90 backdrop-blur border-b border-sage-100">
+  <nav class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="/" class="font-serif text-xl text-sage-800">tko3<span class="text-sage-400">servs</span></a>
+    <ul class="flex items-center gap-6 text-sm text-sage-500 list-none">
+      <li><a href="apps/" class="hover:text-sage-700 transition-colors">Apps</a></li>
+      <li><a href="api/" class="hover:text-sage-700 transition-colors">API</a></li>
+      <li><a href="en/" class="border border-sage-200 rounded px-3 py-0.5 hover:bg-sage-100 transition-colors">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+  <div>
+    <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-5">Slow · Simple · Specialized</p>
+    <h1 class="font-serif text-5xl leading-tight text-sage-900 mb-6">
+      小さくて、<em class="text-sage-500 not-italic">確かな</em><br>ツールを作る。
+    </h1>
+    <p class="text-sage-500 text-base leading-relaxed mb-8">
+      郵便番号・住所変換から不動産分析まで、<br>実務で使えるAPIとアプリを提供しています。
+    </p>
+    <div class="flex gap-3 flex-wrap">
+      <a href="apps/" class="bg-sage-600 text-white text-sm px-5 py-2.5 rounded-lg hover:bg-sage-800 transition-colors">アプリを試す</a>
+      <a href="api/" class="border border-sage-300 text-sage-600 text-sm px-5 py-2.5 rounded-lg hover:bg-sage-100 transition-colors">API ドキュメント</a>
+    </div>
+  </div>
+  <div class="hidden md:block rounded-xl overflow-hidden ring-1 ring-sage-200 shadow-lg shadow-sage-200/50">
+    <div class="bg-sage-800 px-4 py-2.5 flex gap-1.5">
+      <span class="w-3 h-3 rounded-full bg-sage-600/60"></span>
+      <span class="w-3 h-3 rounded-full bg-sage-600/60"></span>
+      <span class="w-3 h-3 rounded-full bg-sage-600/60"></span>
+    </div>
+    <pre class="bg-sage-900 px-6 py-5 text-xs leading-7 font-mono overflow-x-auto text-left"><code><span class="text-sage-400">$ </span><span class="text-sage-200">curl</span> <span class="text-green-300">"https://api.tko3servs.com/postcode?q=1600022"</span>
+
+<span class="text-sage-400">{</span>
+  <span class="text-sage-200">"postcode"</span>: <span class="text-green-300">"1600022"</span>,
+  <span class="text-sage-200">"pref"</span>:     <span class="text-green-300">"東京都"</span>,
+  <span class="text-sage-200">"city"</span>:     <span class="text-green-300">"新宿区"</span>,
+  <span class="text-sage-200">"town"</span>:     <span class="text-green-300">"新宿"</span>
+<span class="text-sage-400">}</span></code></pre>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="bg-white border-y border-sage-100 py-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="font-serif text-3xl font-normal text-sage-900 mb-10">提供サービス</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+      <a href="api/postcode.html" class="bg-sage-50 border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
+        <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">〒</div>
+        <h3 class="text-sm font-medium text-sage-800">郵便番号 API</h3>
+        <p class="text-xs text-sage-500 leading-relaxed flex-1">郵便番号から都道府県・市区町村・町名を返すREST API。無料で試せます。</p>
+        <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">API</span>
+      </a>
+
+      <a href="apps/#postcode" class="bg-sage-50 border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
+        <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">#</div>
+        <h3 class="text-sm font-medium text-sage-800">郵便番号変換</h3>
+        <p class="text-xs text-sage-500 leading-relaxed flex-1">郵便番号を入力して住所を確認。コピペにも使える軽量ツール。</p>
+        <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">App</span>
+      </a>
+
+      <a href="apps/#wareki" class="bg-sage-50 border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
+        <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">和</div>
+        <h3 class="text-sm font-medium text-sage-800">西暦 ↔ 和暦変換</h3>
+        <p class="text-xs text-sage-500 leading-relaxed flex-1">生年月日から和暦・星座・今日の運勢を一括表示。</p>
+        <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">App</span>
+      </a>
+
+      <div class="bg-sage-50/50 border border-dashed border-sage-200 rounded-2xl p-6 flex flex-col gap-2 opacity-60">
+        <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-400 mb-1 text-xl">+</div>
+        <h3 class="text-sm font-medium text-sage-600">近日公開</h3>
+        <p class="text-xs text-sage-400 leading-relaxed flex-1">不動産・住所・地理情報まわりのAPIを順次追加予定です。</p>
+        <span class="text-xs bg-gray-100 text-gray-400 rounded-full px-2.5 py-0.5 self-start mt-1">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About 3S -->
+<section class="bg-sage-50 py-20">
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+    <div class="md:col-span-2">
+      <h2 class="font-serif text-3xl font-normal text-sage-900 mb-8">3S について</h2>
+      <div class="space-y-5 text-sm text-sage-600 leading-relaxed">
+        <p><span class="font-medium text-sage-800">Slow.</span>　速く作って壊すより、ゆっくり確かめながら育てる。</p>
+        <p><span class="font-medium text-sage-800">Simple.</span>　一つのツールに一つの仕事。複雑にしない。</p>
+        <p><span class="font-medium text-sage-800">Specialized.</span>　不動産・住所・地理情報という領域に集中する。</p>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-5">技術スタック</h3>
+      <ul class="space-y-3 list-none" id="stack-list"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-sage-100 py-8">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between flex-wrap gap-3">
+    <span class="font-serif text-sage-400">tko3servs</span>
+    <p class="text-xs text-gray-400">© 2025 tko3servs · <a href="mailto:info@tko3servs.com" class="text-sage-400 hover:underline">info@tko3servs.com</a></p>
+  </div>
+</footer>
+
+<script>
+const stack = ['Python / FastAPI', 'PostgreSQL / PostGIS', 'Cloudflare Pages / Workers', '国土交通省オープンデータ'];
+document.getElementById('stack-list').innerHTML =
+  stack.map(s => `<li class="text-sm text-sage-500 pl-3 border-l-2 border-sage-200">${s}</li>`).join('');
+</script>
+</body>
+</html>
