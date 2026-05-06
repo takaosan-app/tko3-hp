@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apps — tko3servs</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sage: {
+          50:'#f2f5ef', 100:'#dde8d7', 200:'#bdd4b3', 300:'#96b888',
+          400:'#6e9b5e', 500:'#4f7d42', 600:'#3b6130', 700:'#2e4d25',
+          800:'#233c1b', 900:'#162511'
+        }
+      },
+      fontFamily: {
+        serif:['"DM Serif Display"','Georgia','serif'],
+        sans:['"DM Sans"','system-ui','sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-sage-50 text-sage-900 font-sans font-light">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-sage-50/90 backdrop-blur border-b border-sage-100">
+  <nav class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="../" class="font-serif text-xl text-sage-800">tko3<span class="text-sage-400">servs</span></a>
+    <ul class="flex items-center gap-6 text-sm list-none">
+      <li><a href="./" class="text-sage-800 font-medium border-b-2 border-sage-400 pb-0.5">Apps</a></li>
+      <li><a href="../api/" class="text-sage-500 hover:text-sage-700 transition-colors">API</a></li>
+      <li><a href="../en/" class="border border-sage-200 rounded px-3 py-0.5 text-sage-500 hover:bg-sage-100 transition-colors">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="max-w-5xl mx-auto px-6 py-16">
+  <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-3">Apps</p>
+  <h1 class="font-serif text-4xl font-normal text-sage-900 mb-10">ツール一覧</h1>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <a href="postcode.html" class="bg-white border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
+      <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">〒</div>
+      <h2 class="text-sm font-medium text-sage-800">郵便番号変換</h2>
+      <p class="text-xs text-sage-500 leading-relaxed flex-1">郵便番号を入力して住所を確認。コピペにも使える軽量ツール。</p>
+      <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">App</span>
+    </a>
+
+    <div class="bg-sage-50/50 border border-dashed border-sage-200 rounded-2xl p-6 flex flex-col gap-2 opacity-60">
+      <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-400 mb-1 text-xl">和</div>
+      <h2 class="text-sm font-medium text-sage-600">西暦 ↔ 和暦変換</h2>
+      <p class="text-xs text-sage-400 leading-relaxed flex-1">生年月日から和暦・星座・今日の運勢を一括表示。</p>
+      <span class="text-xs bg-gray-100 text-gray-400 rounded-full px-2.5 py-0.5 self-start mt-1">Coming soon</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-sage-100 py-8 mt-16">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between flex-wrap gap-3">
+    <span class="font-serif text-sage-400">tko3servs</span>
+    <p class="text-xs text-gray-400">© 2025 tko3servs · <a href="mailto:info@tko3servs.com" class="text-sage-400 hover:underline">info@tko3servs.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
