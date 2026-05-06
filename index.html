@@ -110,36 +110,16 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- About 3S -->
-<section class="bg-sage-50 py-20">
-  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-    <div class="md:col-span-2">
-      <h2 class="font-serif text-3xl font-normal text-sage-900 mb-8">3S について</h2>
-      <div class="space-y-5 text-sm text-sage-600 leading-relaxed">
-        <p><span class="font-medium text-sage-800">Slow.</span>　速く作って壊すより、ゆっくり確かめながら育てる。</p>
-        <p><span class="font-medium text-sage-800">Simple.</span>　一つのツールに一つの仕事。複雑にしない。</p>
-        <p><span class="font-medium text-sage-800">Specialized.</span>　不動産・住所・地理情報という領域に集中する。</p>
-      </div>
-    </div>
-    <div>
-      <h3 class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-5">技術スタック</h3>
-      <ul class="space-y-3 list-none" id="stack-list"></ul>
-    </div>
-  </div>
-</section>
-
 <!-- Footer -->
 <footer class="bg-white border-t border-sage-100 py-8">
   <div class="max-w-5xl mx-auto px-6 flex items-center justify-between flex-wrap gap-3">
-    <span class="font-serif text-sage-400">tko3servs</span>
-    <p class="text-xs text-gray-400">© 2025 tko3servs · <a href="mailto:info@tko3servs.com" class="text-sage-400 hover:underline">info@tko3servs.com</a></p>
+    <a href="https://takaosan.app" class="flex items-center gap-2 group">
+      <img src="takaosan-app.jpg" alt="" class="w-5 h-5 rounded-full ring-1 ring-sage-200">
+      <span class="font-serif text-sage-400 group-hover:text-sage-600 transition-colors">tko3servs</span>
+    </a>
+    <p class="text-xs text-gray-400">© 2025 <a href="https://takaosan.app" class="text-sage-400 hover:underline">takaosan.app</a> · <a href="mailto:info@tko3servs.com" class="text-sage-400 hover:underline">info@tko3servs.com</a></p>
   </div>
 </footer>
 
-<script>
-const stack = ['Python / FastAPI', 'PostgreSQL / PostGIS', 'Cloudflare Pages / Workers', '国土交通省オープンデータ'];
-document.getElementById('stack-list').innerHTML =
-  stack.map(s => `<li class="text-sm text-sage-500 pl-3 border-l-2 border-sage-200">${s}</li>`).join('');
-</script>
 </body>
 </html>
