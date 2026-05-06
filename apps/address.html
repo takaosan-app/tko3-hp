@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>住所から郵便番号変換 — tko3servs</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sage: {
+          50:'#f2f5ef', 100:'#dde8d7', 200:'#bdd4b3', 300:'#96b888',
+          400:'#6e9b5e', 500:'#4f7d42', 600:'#3b6130', 700:'#2e4d25',
+          800:'#233c1b', 900:'#162511'
+        }
+      },
+      fontFamily: {
+        serif:['"DM Serif Display"','Georgia','serif'],
+        sans:['"DM Sans"','system-ui','sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-sage-50 text-sage-900 font-sans font-light">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-sage-50/90 backdrop-blur border-b border-sage-100">
+  <nav class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="../" class="font-serif text-xl text-sage-800">tko3<span class="text-sage-400">servs</span></a>
+    <ul class="flex items-center gap-6 text-sm list-none">
+      <li><a href="./" class="text-sage-800 font-medium border-b-2 border-sage-400 pb-0.5">Apps</a></li>
+      <li><a href="../api/" class="text-sage-500 hover:text-sage-700 transition-colors">API</a></li>
+      <li><a href="../en/" class="border border-sage-200 rounded px-3 py-0.5 text-sage-500 hover:bg-sage-100 transition-colors">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+
+  <!-- Sidebar -->
+  <aside class="hidden md:block">
+    <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-4">API</p>
+    <ul class="space-y-1 text-sm list-none">
+      <li><a href="#overview"  class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">概要</a></li>
+      <li><a href="#endpoint"  class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">エンドポイント</a></li>
+      <li><a href="#params"    class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">パラメータ</a></li>
+      <li><a href="#response"  class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">レスポンス</a></li>
+      <li><a href="#demo"      class="block py-1 text-sage-600 hover:text-sage-900 transition-colors font-medium">▶ デモ</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="md:col-span-3 space-y-14">
+
+    <div>
+      <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-3">API ドキュメント</p>
+      <h1 class="font-serif text-4xl font-normal text-sage-900 mb-3">住所から郵便番号変換</h1>
+      <p class="text-sage-500 leading-relaxed">都道府県・市区町村・町名などの住所キーワードから郵便番号を検索するREST API。認証不要・無料でご利用いただけます。</p>
+    </div>
+
+    <!-- Overview -->
+    <section id="overview" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">概要</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-white border border-sage-100 rounded-xl p-4">
+          <p class="text-xs text-sage-400 mb-1">ベースURL</p>
+          <p class="text-sm font-mono text-sage-700">api.tko3servs.com</p>
+        </div>
+        <div class="bg-white border border-sage-100 rounded-xl p-4">
+          <p class="text-xs text-sage-400 mb-1">認証</p>
+          <p class="text-sm text-sage-700">不要（無料）</p>
+        </div>
+        <div class="bg-white border border-sage-100 rounded-xl p-4">
+          <p class="text-xs text-sage-400 mb-1">レスポンス形式</p>
+          <p class="text-sm text-sage-700">JSON</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Endpoint -->
+    <section id="endpoint" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">エンドポイント</h2>
+      <div class="bg-sage-900 rounded-xl overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-3 border-b border-sage-800">
+          <span class="text-xs font-medium bg-sage-600 text-white px-2.5 py-0.5 rounded">GET</span>
+          <code class="text-sm text-sage-200 font-mono">/postcode</code>
+        </div>
+        <pre class="px-5 py-4 text-xs font-mono text-green-300 leading-7 overflow-x-auto">https://api.tko3servs.com/postcode?q=<span class="text-sage-400">{住所キーワード}</span></pre>
+      </div>
+    </section>
+
+    <!-- Params -->
+    <section id="params" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">パラメータ</h2>
+      <div class="bg-white border border-sage-100 rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-sage-50 border-b border-sage-100">
+            <tr>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">パラメータ</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">必須</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-sage-50">
+              <td class="px-5 py-3.5 font-mono text-sage-700">q</td>
+              <td class="px-5 py-3.5"><span class="text-xs bg-amber-50 text-amber-600 border border-amber-200 rounded px-2 py-0.5">必須</span></td>
+              <td class="px-5 py-3.5 text-sage-600">住所キーワード（都道府県・市区町村・町名など）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Response -->
+    <section id="response" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">レスポンス例</h2>
+      <div class="bg-sage-900 rounded-xl overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-sage-800">
+          <div class="flex items-center gap-2">
+            <span class="text-xs bg-green-700/50 text-green-300 px-2.5 py-0.5 rounded">200 OK</span>
+          </div>
+          <span class="text-xs text-sage-500">application/json</span>
+        </div>
+        <pre class="px-5 py-4 text-xs font-mono leading-7 overflow-x-auto"><code><span class="text-sage-400">{</span>
+  <span class="text-sage-200">"query"</span>:        <span class="text-green-300">"西新宿"</span>,
+  <span class="text-sage-200">"count"</span>:        <span class="text-amber-300">1</span>,
+  <span class="text-sage-200">"api_key_used"</span>: <span class="text-blue-300">false</span>,
+  <span class="text-sage-200">"results"</span>: <span class="text-sage-400">[{</span>
+    <span class="text-sage-200">"postcode"</span>:   <span class="text-green-300">"1600023"</span>,
+    <span class="text-sage-200">"pref"</span>:       <span class="text-green-300">"東京都"</span>,
+    <span class="text-sage-200">"city"</span>:       <span class="text-green-300">"新宿区"</span>,
+    <span class="text-sage-200">"town"</span>:       <span class="text-green-300">"西新宿"</span>,
+    <span class="text-sage-200">"pref_kana"</span>:  <span class="text-green-300">"トウキョウト"</span>,
+    <span class="text-sage-200">"city_kana"</span>:  <span class="text-green-300">"シンジュクク"</span>,
+    <span class="text-sage-200">"town_kana"</span>:  <span class="text-green-300">"ニシシンジュク"</span>
+  <span class="text-sage-400">}]</span>
+<span class="text-sage-400">}</span></code></pre>
+      </div>
+
+      <div class="mt-4 bg-white border border-sage-100 rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-sage-50 border-b border-sage-100">
+            <tr>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">フィールド</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">型</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">説明</th>
+            </tr>
+          </thead>
+          <tbody id="response-fields" class="divide-y divide-sage-50"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Live Demo -->
+    <section id="demo" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">ライブデモ</h2>
+      <div class="bg-white border border-sage-200 rounded-2xl p-6">
+        <div class="flex gap-3 mb-5">
+          <input
+            id="demo-input"
+            type="text"
+            placeholder="住所を入力（例: 西新宿、目黒区目黒）"
+            class="flex-1 border border-sage-200 rounded-lg px-4 py-2.5 text-sm text-sage-800 placeholder-sage-300 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-300 transition"
+          >
+          <button onclick="runDemo()"
+            class="bg-sage-600 text-white text-sm px-5 py-2.5 rounded-lg hover:bg-sage-800 transition-colors">
+            検索
+          </button>
+        </div>
+        <div id="demo-request" class="hidden mb-3">
+          <p class="text-xs text-sage-400 mb-1">Request</p>
+          <div class="bg-sage-50 border border-sage-100 rounded-lg px-4 py-2.5 font-mono text-xs text-sage-600 break-all" id="demo-url"></div>
+        </div>
+        <div id="demo-response" class="hidden">
+          <p class="text-xs text-sage-400 mb-1">Response</p>
+          <pre id="demo-json" class="bg-sage-900 rounded-lg px-4 py-3 text-xs font-mono text-green-300 leading-6 overflow-x-auto"></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-sage-100 py-8">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between flex-wrap gap-3">
+    <span class="font-serif text-sage-400">tko3servs</span>
+    <p class="text-xs text-gray-400">© 2025 tko3servs · <a href="mailto:info@tko3servs.com" class="text-sage-400 hover:underline">info@tko3servs.com</a></p>
+  </div>
+</footer>
+
+<script>
+const fields = [
+  ['query',       'string',  'クエリとして渡した住所キーワード'],
+  ['count',       'number',  '結果件数'],
+  ['api_key_used','boolean', 'APIキー使用フラグ（現在は常にfalse）'],
+  ['postcode',    'string',  '郵便番号（7桁）'],
+  ['pref',        'string',  '都道府県名'],
+  ['city',        'string',  '市区町村名'],
+  ['town',        'string',  '町名'],
+  ['pref_kana',   'string',  '都道府県名（カタカナ）'],
+  ['city_kana',   'string',  '市区町村名（カタカナ）'],
+  ['town_kana',   'string',  '町名（カタカナ）'],
+];
+
+document.getElementById('response-fields').innerHTML = fields.map(([f,t,d]) => `
+  <tr>
+    <td class="px-5 py-3 font-mono text-sage-700 text-xs">${f}</td>
+    <td class="px-5 py-3 text-xs"><span class="text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">${t}</span></td>
+    <td class="px-5 py-3 text-sage-500 text-xs">${d}</td>
+  </tr>`).join('');
+
+async function runDemo() {
+  const raw = document.getElementById('demo-input').value.trim();
+  if (!raw) return;
+  const url = `https://api.tko3servs.com/postcode?q=${encodeURIComponent(raw)}`;
+  document.getElementById('demo-url').textContent = url;
+  document.getElementById('demo-request').classList.remove('hidden');
+  document.getElementById('demo-response').classList.add('hidden');
+  try {
+    const res  = await fetch(url);
+    const data = await res.json();
+    document.getElementById('demo-json').textContent = JSON.stringify(data, null, 2);
+    document.getElementById('demo-response').classList.remove('hidden');
+  } catch(e) {
+    document.getElementById('demo-json').textContent = 'Error: ' + e.message;
+    document.getElementById('demo-response').classList.remove('hidden');
+  }
+}
+document.getElementById('demo-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') runDemo();
+});
+</script>
+</body>
+</html>
