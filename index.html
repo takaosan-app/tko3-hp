@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>tko3servs — Simple APIs & Tools</title>
+<title>tko3servs | takaosan.app から派生した小さなWebサービス群</title>
+<meta name="description" content="tko3servsは、takaosan.appの開発から生まれた小さなAPIとWebツールのサービス群です。郵便番号・住所変換など、実務で使いやすい道具を提供しています。">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -14,7 +15,11 @@ tailwind.config = {
           50:'#f2f5ef', 100:'#dde8d7', 200:'#bdd4b3', 300:'#96b888',
           400:'#6e9b5e', 500:'#4f7d42', 600:'#3b6130', 700:'#2e4d25',
           800:'#233c1b', 900:'#162511'
-        }
+        },
+        ink:'#181612',
+        bark:'#6f5136',
+        paper:'#f7f2e8',
+        cream:'#fbf8f0'
       },
       fontFamily: {
         serif:['"DM Serif Display"','Georgia','serif'],
@@ -26,40 +31,46 @@ tailwind.config = {
 </script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
-<body class="bg-sage-50 text-sage-900 font-sans font-light">
+<body class="bg-cream text-sage-900 font-sans font-light">
 
 <!-- Header -->
-<header class="sticky top-0 z-50 bg-sage-50/90 backdrop-blur border-b border-sage-100">
+<header class="sticky top-0 z-50 bg-cream/90 backdrop-blur border-b border-sage-100">
   <nav class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-    <a href="/" class="font-serif text-xl text-sage-800">tko3<span class="text-sage-400">servs</span></a>
+    <a href="/" class="font-serif text-xl text-sage-800">tko3<span class="text-bark">servs</span></a>
     <ul class="flex items-center gap-6 text-sm text-sage-500 list-none">
       <li><a href="apps/" class="hover:text-sage-700 transition-colors">Apps</a></li>
-      <li><a href="api/" class="hover:text-sage-700 transition-colors">API</a></li>
-      <li><a href="en/" class="border border-sage-200 rounded px-3 py-0.5 hover:bg-sage-100 transition-colors">EN</a></li>
+      <li><a href="https://takaosan.app" class="hidden sm:inline hover:text-sage-700 transition-colors">takaosan.app</a></li>
+      <li><a href="mailto:info@tko3servs.com" class="border border-sage-200 rounded-lg px-3 py-1 hover:bg-paper transition-colors">Contact</a></li>
     </ul>
   </nav>
 </header>
 
 <!-- Hero -->
-<section class="max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+<section class="max-w-5xl mx-auto px-6 py-20 sm:py-24 grid md:grid-cols-[1.05fr_0.95fr] gap-12 md:gap-16 items-center">
   <div>
-    <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-5">Slow · Simple · Specialized</p>
+    <p class="text-xs font-medium tracking-widest uppercase text-bark mb-5">A small branch from takaosan.app</p>
     <h1 class="font-serif text-5xl leading-tight text-sage-900 mb-6">
-      小さくて、<em class="text-sage-500 not-italic">確かな</em><br>ツールを作る。
+      必要になった道具を、<br><em class="text-sage-600 not-italic">小さなサービス</em>にする。
     </h1>
-    <p class="text-sage-500 text-base leading-relaxed mb-8">
-      郵便番号・住所変換から不動産分析まで、<br>実務で使えるAPIとアプリを提供しています。
+    <p class="text-sage-700 text-base leading-relaxed mb-4">
+      tko3servs は、takaosan.app の開発から派生したAPIとWebツールの置き場所です。まずは郵便番号・住所変換など、実務で使いやすい小さな道具を公開しています。
+    </p>
+    <p class="text-sm text-sage-500 leading-relaxed mb-8">
+      個人開発の母屋である takaosan.app から、単独で使えるものを切り出して育てています。
     </p>
     <div class="flex gap-3 flex-wrap">
-      <a href="apps/" class="bg-sage-600 text-white text-sm px-5 py-2.5 rounded-lg hover:bg-sage-800 transition-colors">アプリを試す</a>
-      <a href="api/" class="border border-sage-300 text-sage-600 text-sm px-5 py-2.5 rounded-lg hover:bg-sage-100 transition-colors">API ドキュメント</a>
+      <a href="apps/" class="bg-sage-800 text-white text-sm px-5 py-2.5 rounded-lg hover:bg-sage-900 transition-colors">ツールを試す</a>
+      <a href="https://takaosan.app" class="border border-sage-300 text-sage-700 text-sm px-5 py-2.5 rounded-lg hover:bg-paper transition-colors">母屋を見る</a>
     </div>
   </div>
-  <div class="hidden md:block rounded-xl overflow-hidden ring-1 ring-sage-200 shadow-lg shadow-sage-200/50">
-    <div class="bg-sage-800 px-4 py-2.5 flex gap-1.5">
+  <div class="rounded-xl overflow-hidden ring-1 ring-sage-200 shadow-lg shadow-sage-200/50 bg-sage-900">
+    <div class="bg-sage-800 px-4 py-2.5 flex items-center justify-between gap-3">
+      <div class="flex gap-1.5">
       <span class="w-3 h-3 rounded-full bg-sage-600/60"></span>
       <span class="w-3 h-3 rounded-full bg-sage-600/60"></span>
       <span class="w-3 h-3 rounded-full bg-sage-600/60"></span>
+      </div>
+      <span class="text-[10px] uppercase tracking-widest text-sage-300">api branch</span>
     </div>
     <pre class="bg-sage-900 px-6 py-5 text-xs leading-7 font-mono overflow-x-auto text-left"><code><span class="text-sage-400">$ </span><span class="text-sage-200">curl</span> <span class="text-green-300">"https://api.tko3servs.com/postcode?q=1600022"</span>
 
@@ -72,23 +83,45 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- Origin -->
+<section class="bg-paper border-y border-sage-100 py-16">
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-[0.85fr_1.15fr] gap-8 items-start">
+    <div>
+      <p class="text-xs font-medium tracking-widest uppercase text-bark mb-3">Origin</p>
+      <h2 class="font-serif text-3xl font-normal text-sage-900">takaosan.app から<br class="hidden md:block">枝分かれしたもの</h2>
+    </div>
+    <div class="space-y-4 text-sm leading-7 text-sage-700">
+      <p>
+        takaosan.app は、個人開発の母屋です。アプリやWebサービスを作る中で、何度も使いそうな処理や、他の人にも役立ちそうな小さな機能が出てきます。
+      </p>
+      <p>
+        tko3servs では、そうした機能を「ひとつの仕事をする道具」として切り出しています。大きなプラットフォームではなく、軽く試せて、必要なときに使えるサービス群を目指しています。
+      </p>
+      <a href="https://takaosan.app" class="inline-flex items-center rounded-lg border border-sage-200 bg-white px-4 py-2 text-xs font-medium text-sage-700 hover:border-sage-400 transition-colors">takaosan.app へ戻る</a>
+    </div>
+  </div>
+</section>
+
 <!-- Services -->
 <section class="bg-white border-y border-sage-100 py-20">
   <div class="max-w-5xl mx-auto px-6">
-    <h2 class="font-serif text-3xl font-normal text-sage-900 mb-10">提供サービス</h2>
+    <div class="mb-10">
+      <p class="text-xs font-medium tracking-widest uppercase text-bark mb-3">Services</p>
+      <h2 class="font-serif text-3xl font-normal text-sage-900">提供サービス</h2>
+    </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
       <a href="apps/address.html" class="bg-sage-50 border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
         <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">住</div>
         <h3 class="text-sm font-medium text-sage-800">住所から郵便番号変換</h3>
-        <p class="text-xs text-sage-500 leading-relaxed flex-1">住所キーワードから郵便番号を検索するREST API。無料で試せます。</p>
+        <p class="text-xs text-sage-500 leading-relaxed flex-1">住所キーワードから郵便番号を検索するREST API。開発中に必要になった機能を切り出しました。</p>
         <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">API</span>
       </a>
 
       <a href="apps/postcode.html" class="bg-sage-50 border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
         <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">#</div>
         <h3 class="text-sm font-medium text-sage-800">郵便番号変換</h3>
-        <p class="text-xs text-sage-500 leading-relaxed flex-1">郵便番号を入力して住所を確認。コピペにも使える軽量ツール。</p>
+        <p class="text-xs text-sage-500 leading-relaxed flex-1">郵便番号を入力して住所を確認。APIの動作確認にも使える軽量ツール。</p>
         <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">App</span>
       </a>
 
@@ -115,7 +148,7 @@ tailwind.config = {
   <div class="max-w-5xl mx-auto px-6 flex items-center justify-between flex-wrap gap-3">
     <a href="https://takaosan.app" class="flex items-center gap-2 group">
       <img src="takaosan-app.jpg" alt="" class="w-5 h-5 rounded-full ring-1 ring-sage-200">
-      <span class="font-serif text-sage-400 group-hover:text-sage-600 transition-colors">tko3servs</span>
+      <span class="font-serif text-sage-500 group-hover:text-sage-700 transition-colors">from takaosan.app</span>
     </a>
     <p class="text-xs text-gray-400">© 2025 <a href="https://takaosan.app" class="text-sage-400 hover:underline">takaosan.app</a> · <a href="mailto:info@tko3servs.com" class="text-sage-400 hover:underline">info@tko3servs.com</a></p>
   </div>
