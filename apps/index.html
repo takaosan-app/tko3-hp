@@ -12,9 +12,9 @@ tailwind.config = {
     extend: {
       colors: {
         sage: {
-          50:'#f2f5ef', 100:'#dde8d7', 200:'#bdd4b3', 300:'#96b888',
-          400:'#6e9b5e', 500:'#4f7d42', 600:'#3b6130', 700:'#2e4d25',
-          800:'#233c1b', 900:'#162511'
+          50:'#eef9fe', 100:'#d8f1fc', 200:'#b6e5f8', 300:'#7fd0f1',
+          400:'#42AEEA', 500:'#239bd8', 600:'#1279b4', 700:'#0f6598',
+          800:'#0d4f77', 900:'#082f49'
         }
       },
       fontFamily: {
@@ -43,27 +43,27 @@ tailwind.config = {
 <div class="max-w-5xl mx-auto px-6 py-16">
   <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-3">Apps from takaosan.app</p>
   <h1 class="font-serif text-4xl font-normal text-sage-900 mb-10">ツール一覧</h1>
-  <div class="mb-8 rounded-xl border border-sage-100 bg-white p-5 text-sm leading-7 text-sage-600">
+  <div class="mb-8 rounded-lg border border-sage-100 bg-white p-5 text-sm leading-7 text-sage-600">
     tko3servs は、takaosan.app の開発から派生した小さなWebサービス群です。ここでは、APIの動作確認や日々の作業に使える軽量ツールを公開しています。
   </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-    <a href="postcode.html" class="bg-white border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
+    <a href="postcode.html" class="bg-white border border-sage-100 rounded-lg p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
       <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">〒</div>
       <h2 class="text-sm font-medium text-sage-800">郵便番号変換</h2>
       <p class="text-xs text-sage-500 leading-relaxed flex-1">郵便番号を入力して住所を確認。コピペにも使える軽量ツール。</p>
       <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">App</span>
     </a>
 
-    <a href="address.html" class="bg-white border border-sage-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
+    <a href="address.html" class="bg-white border border-sage-100 rounded-lg p-6 flex flex-col gap-2 hover:border-sage-400 hover:-translate-y-0.5 transition-all">
       <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif mb-1 text-lg">住</div>
       <h2 class="text-sm font-medium text-sage-800">住所から郵便番号変換</h2>
       <p class="text-xs text-sage-500 leading-relaxed flex-1">住所キーワードを入力して郵便番号を検索。</p>
       <span class="text-xs bg-sage-100 text-sage-500 rounded-full px-2.5 py-0.5 self-start mt-1">App</span>
     </a>
 
-    <div class="bg-sage-50/50 border border-dashed border-sage-200 rounded-2xl p-6 flex flex-col gap-2 opacity-60">
+    <div class="bg-sage-50/50 border border-dashed border-sage-200 rounded-lg p-6 flex flex-col gap-2 opacity-60">
       <div class="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center text-sage-400 mb-1 text-xl">和</div>
       <h2 class="text-sm font-medium text-sage-600">西暦 ↔ 和暦変換</h2>
       <p class="text-xs text-sage-400 leading-relaxed flex-1">生年月日から和暦・星座・今日の運勢を一括表示。</p>

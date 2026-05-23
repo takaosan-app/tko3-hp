@@ -11,9 +11,9 @@ tailwind.config = {
     extend: {
       colors: {
         sage: {
-          50:'#f2f5ef', 100:'#dde8d7', 200:'#bdd4b3', 300:'#96b888',
-          400:'#6e9b5e', 500:'#4f7d42', 600:'#3b6130', 700:'#2e4d25',
-          800:'#233c1b', 900:'#162511'
+          50:'#eef9fe', 100:'#d8f1fc', 200:'#b6e5f8', 300:'#7fd0f1',
+          400:'#42AEEA', 500:'#239bd8', 600:'#1279b4', 700:'#0f6598',
+          800:'#0d4f77', 900:'#082f49'
         }
       },
       fontFamily: {
@@ -53,7 +53,7 @@ tailwind.config = {
       <div class="w-9 h-9 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif">〒</div>
       <h2 class="font-serif text-2xl font-normal text-sage-800">郵便番号 → 住所変換</h2>
     </div>
-    <div class="bg-white border border-sage-100 rounded-2xl p-6 shadow-sm shadow-sage-100">
+    <div class="bg-white border border-sage-100 rounded-lg p-6 shadow-sm shadow-sage-100">
       <div class="flex gap-3 mb-5">
         <input
           id="pc-input"
@@ -78,7 +78,7 @@ tailwind.config = {
       <div class="w-9 h-9 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 font-serif">和</div>
       <h2 class="font-serif text-2xl font-normal text-sage-800">生年月日 → 和暦・星座・運勢</h2>
     </div>
-    <div class="bg-white border border-sage-100 rounded-2xl p-6 shadow-sm shadow-sage-100">
+    <div class="bg-white border border-sage-100 rounded-lg p-6 shadow-sm shadow-sage-100">
       <div class="flex gap-3 mb-5 flex-wrap">
         <input
           id="bday-input"
@@ -205,22 +205,22 @@ function lookupBirthday() {
 
   el.innerHTML = `
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-2">
-      <div class="bg-sage-50 rounded-xl p-3 border border-sage-100">
+      <div class="bg-sage-50 rounded-lg p-3 border border-sage-100">
         <p class="text-xs text-sage-400 mb-1">和暦</p>
         <p class="text-base font-medium text-sage-800">${era ? era.name : '?'}${eraY}年</p>
         <p class="text-xs text-sage-400">${era ? era.kana : ''} ${eraY}nen</p>
       </div>
-      <div class="bg-sage-50 rounded-xl p-3 border border-sage-100">
+      <div class="bg-sage-50 rounded-lg p-3 border border-sage-100">
         <p class="text-xs text-sage-400 mb-1">年齢</p>
         <p class="text-base font-medium text-sage-800">${age} 歳</p>
         <p class="text-xs text-sage-400">${y}年生まれ</p>
       </div>
-      <div class="bg-sage-50 rounded-xl p-3 border border-sage-100">
+      <div class="bg-sage-50 rounded-lg p-3 border border-sage-100">
         <p class="text-xs text-sage-400 mb-1">星座</p>
         <p class="text-base font-medium text-sage-800">${sign.emoji} ${sign.name}</p>
         <p class="text-xs text-sage-400">${sign.en}</p>
       </div>
-      <div class="rounded-xl p-3 border ${fort.color}">
+      <div class="rounded-lg p-3 border ${fort.color}">
         <p class="text-xs mb-1 opacity-70">今日の運勢</p>
         <p class="text-base font-medium">${fort.label}</p>
         <p class="text-xs mt-0.5 opacity-80 leading-relaxed">${fort.msg}</p>
