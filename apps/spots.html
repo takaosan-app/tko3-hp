@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>近隣スポット API — tko3servs</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sage: {
+          50:'#eef9fe', 100:'#d8f1fc', 200:'#b6e5f8', 300:'#7fd0f1',
+          400:'#42AEEA', 500:'#239bd8', 600:'#1279b4', 700:'#0f6598',
+          800:'#0d4f77', 900:'#082f49'
+        }
+      },
+      fontFamily: {
+        serif:['"DM Serif Display"','Georgia','serif'],
+        sans:['"DM Sans"','system-ui','sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-sage-50 text-sage-900 font-sans font-light">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-sage-50/90 backdrop-blur border-b border-sage-100">
+  <nav class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="../" class="font-serif text-xl text-sage-800">tko3<span class="text-sage-400">servs</span></a>
+    <ul class="flex items-center gap-6 text-sm list-none">
+      <li><a href="./" class="text-sage-800 font-medium border-b-2 border-sage-400 pb-0.5">Apps</a></li>
+      <li><a href="https://takaosan.app" class="text-sage-500 hover:text-sage-700 transition-colors">takaosan.app</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+
+  <!-- Sidebar -->
+  <aside class="hidden md:block">
+    <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-4">API</p>
+    <ul class="space-y-1 text-sm list-none">
+      <li><a href="#overview"  class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">概要</a></li>
+      <li><a href="#endpoint"  class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">エンドポイント</a></li>
+      <li><a href="#params"    class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">パラメータ</a></li>
+      <li><a href="#response"  class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">レスポンス</a></li>
+      <li><a href="#errors"    class="block py-1 text-sage-600 hover:text-sage-900 transition-colors">エラー</a></li>
+      <li><a href="#demo"      class="block py-1 text-sage-600 hover:text-sage-900 transition-colors font-medium">▶ デモ</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="md:col-span-3 space-y-14">
+
+    <div>
+      <p class="text-xs font-medium tracking-widest uppercase text-sage-400 mb-3">API ドキュメント</p>
+      <h1 class="font-serif text-4xl font-normal text-sage-900 mb-3">近隣スポット API</h1>
+      <p class="text-sage-500 leading-relaxed">緯度・経度を指定すると、近くの公園・施設などのスポットを距離順で返すREST API。OpenStreetMapデータを使用。認証不要・無料でご利用いただけます。</p>
+    </div>
+
+    <!-- Overview -->
+    <section id="overview" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">概要</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-white border border-sage-100 rounded-lg p-4">
+          <p class="text-xs text-sage-400 mb-1">ベースURL</p>
+          <p class="text-sm font-mono text-sage-700">api.tko3servs.com</p>
+        </div>
+        <div class="bg-white border border-sage-100 rounded-lg p-4">
+          <p class="text-xs text-sage-400 mb-1">認証</p>
+          <p class="text-sm text-sage-700">不要（無料）</p>
+        </div>
+        <div class="bg-white border border-sage-100 rounded-lg p-4">
+          <p class="text-xs text-sage-400 mb-1">レスポンス形式</p>
+          <p class="text-sm text-sage-700">JSON</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Endpoint -->
+    <section id="endpoint" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">エンドポイント</h2>
+      <div class="bg-sage-900 rounded-lg overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-3 border-b border-sage-800">
+          <span class="text-xs font-medium bg-sage-600 text-white px-2.5 py-0.5 rounded">GET</span>
+          <code class="text-sm text-sage-200 font-mono">/spots</code>
+        </div>
+        <pre class="px-5 py-4 text-xs font-mono text-sky-300 leading-7 overflow-x-auto">https://api.tko3servs.com/spots?lat=<span class="text-sage-400">{緯度}</span>&lon=<span class="text-sage-400">{経度}</span></pre>
+      </div>
+    </section>
+
+    <!-- Params -->
+    <section id="params" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">パラメータ</h2>
+      <div class="bg-white border border-sage-100 rounded-lg overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-sage-50 border-b border-sage-100">
+            <tr>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">パラメータ</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">必須</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">デフォルト</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-sage-50">
+              <td class="px-5 py-3.5 font-mono text-sage-700">lat</td>
+              <td class="px-5 py-3.5"><span class="text-xs bg-amber-50 text-amber-600 border border-amber-200 rounded px-2 py-0.5">必須</span></td>
+              <td class="px-5 py-3.5 font-mono text-sage-400 text-xs">—</td>
+              <td class="px-5 py-3.5 text-sage-600">緯度（−90〜90）</td>
+            </tr>
+            <tr class="border-t border-sage-50">
+              <td class="px-5 py-3.5 font-mono text-sage-700">lon</td>
+              <td class="px-5 py-3.5"><span class="text-xs bg-amber-50 text-amber-600 border border-amber-200 rounded px-2 py-0.5">必須</span></td>
+              <td class="px-5 py-3.5 font-mono text-sage-400 text-xs">—</td>
+              <td class="px-5 py-3.5 text-sage-600">経度（−180〜180）</td>
+            </tr>
+            <tr class="border-t border-sage-50">
+              <td class="px-5 py-3.5 font-mono text-sage-700">radius</td>
+              <td class="px-5 py-3.5"><span class="text-xs bg-sage-50 text-sage-400 border border-sage-200 rounded px-2 py-0.5">任意</span></td>
+              <td class="px-5 py-3.5 font-mono text-sage-600 text-xs">500</td>
+              <td class="px-5 py-3.5 text-sage-600">検索半径（m）。100〜5000</td>
+            </tr>
+            <tr class="border-t border-sage-50">
+              <td class="px-5 py-3.5 font-mono text-sage-700">limit</td>
+              <td class="px-5 py-3.5"><span class="text-xs bg-sage-50 text-sage-400 border border-sage-200 rounded px-2 py-0.5">任意</span></td>
+              <td class="px-5 py-3.5 font-mono text-sage-600 text-xs">5</td>
+              <td class="px-5 py-3.5 text-sage-600">最大件数。1〜20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Response -->
+    <section id="response" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">レスポンス例</h2>
+      <div class="bg-sage-900 rounded-lg overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-sage-800">
+          <div class="flex items-center gap-2">
+            <span class="text-xs bg-sky-700/50 text-sky-300 px-2.5 py-0.5 rounded">200 OK</span>
+          </div>
+          <span class="text-xs text-sage-500">application/json</span>
+        </div>
+        <pre class="px-5 py-4 text-xs font-mono leading-7 overflow-x-auto"><code><span class="text-sage-400">{</span>
+  <span class="text-sage-200">"lat"</span>:          <span class="text-amber-300">35.6895</span>,
+  <span class="text-sage-200">"lon"</span>:          <span class="text-amber-300">139.6917</span>,
+  <span class="text-sage-200">"radius_m"</span>:     <span class="text-amber-300">500</span>,
+  <span class="text-sage-200">"count"</span>:        <span class="text-amber-300">3</span>,
+  <span class="text-sage-200">"api_key_used"</span>: <span class="text-blue-300">false</span>,
+  <span class="text-sage-200">"results"</span>: <span class="text-sage-400">[{</span>
+    <span class="text-sage-200">"osm_type"</span>:   <span class="text-sky-300">"way"</span>,
+    <span class="text-sage-200">"osm_id"</span>:     <span class="text-amber-300">123456789</span>,
+    <span class="text-sage-200">"name"</span>:       <span class="text-sky-300">"新宿中央公園"</span>,
+    <span class="text-sage-200">"category"</span>:   <span class="text-sky-300">"park"</span>,
+    <span class="text-sage-200">"distance_m"</span>: <span class="text-amber-300">210</span>,
+    <span class="text-sage-200">"lat"</span>:        <span class="text-amber-300">35.6912</span>,
+    <span class="text-sage-200">"lon"</span>:        <span class="text-amber-300">139.6903</span>
+  <span class="text-sage-400">}]</span>
+<span class="text-sage-400">}</span></code></pre>
+      </div>
+
+      <div class="mt-4 bg-white border border-sage-100 rounded-lg overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-sage-50 border-b border-sage-100">
+            <tr>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">フィールド</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">型</th>
+              <th class="text-left px-5 py-3 text-xs font-medium text-sage-500 uppercase tracking-wider">説明</th>
+            </tr>
+          </thead>
+          <tbody id="response-fields" class="divide-y divide-sage-50"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Errors -->
+    <section id="errors" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">エラー</h2>
+      <div class="space-y-3">
+        <div class="flex items-start gap-4 bg-white border border-sage-100 rounded-lg px-5 py-4">
+          <span class="text-xs bg-red-50 text-red-400 border border-red-200 rounded px-2 py-0.5 font-mono shrink-0">400</span>
+          <div>
+            <p class="text-sm font-medium text-sage-800">Bad Request</p>
+            <p class="text-xs text-sage-500 mt-0.5">lat・lonパラメータが不正、または範囲外の値です。</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 bg-white border border-sage-100 rounded-lg px-5 py-4">
+          <span class="text-xs bg-amber-50 text-amber-500 border border-amber-200 rounded px-2 py-0.5 font-mono shrink-0">422</span>
+          <div>
+            <p class="text-sm font-medium text-sage-800">Unprocessable Entity</p>
+            <p class="text-xs text-sage-500 mt-0.5">必須パラメータ（lat・lon）が指定されていません。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demo -->
+    <section id="demo" class="scroll-mt-20">
+      <h2 class="font-serif text-2xl font-normal text-sage-800 mb-4">ライブデモ</h2>
+      <div class="bg-white border border-sage-200 rounded-lg p-6">
+        <div class="grid sm:grid-cols-2 gap-3 mb-3">
+          <div>
+            <label class="block text-xs text-sage-400 mb-1.5">緯度 (lat)</label>
+            <input id="demo-lat" type="number" step="any" placeholder="例: 35.6895"
+              class="w-full border border-sage-200 rounded-lg px-4 py-2.5 text-sm text-sage-800 placeholder-sage-300 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-300 transition font-mono">
+          </div>
+          <div>
+            <label class="block text-xs text-sage-400 mb-1.5">経度 (lon)</label>
+            <input id="demo-lon" type="number" step="any" placeholder="例: 139.6917"
+              class="w-full border border-sage-200 rounded-lg px-4 py-2.5 text-sm text-sage-800 placeholder-sage-300 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-300 transition font-mono">
+          </div>
+          <div>
+            <label class="block text-xs text-sage-400 mb-1.5">検索半径 (radius, m)</label>
+            <input id="demo-radius" type="number" min="100" max="5000" value="500"
+              class="w-full border border-sage-200 rounded-lg px-4 py-2.5 text-sm text-sage-800 placeholder-sage-300 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-300 transition font-mono">
+          </div>
+          <div>
+            <label class="block text-xs text-sage-400 mb-1.5">最大件数 (limit)</label>
+            <input id="demo-limit" type="number" min="1" max="20" value="5"
+              class="w-full border border-sage-200 rounded-lg px-4 py-2.5 text-sm text-sage-800 placeholder-sage-300 focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-300 transition font-mono">
+          </div>
+        </div>
+        <div class="flex gap-3 mb-5">
+          <button onclick="useCurrentLocation()"
+            class="border border-sage-300 text-sage-600 text-sm px-4 py-2.5 rounded-lg hover:bg-sage-50 transition-colors flex items-center gap-2">
+            <span>📍</span> 現在地を使う
+          </button>
+          <button onclick="runDemo()"
+            class="bg-sage-600 text-white text-sm px-5 py-2.5 rounded-lg hover:bg-sage-800 transition-colors">
+            実行
+          </button>
+        </div>
+        <div id="demo-request" class="hidden mb-3">
+          <p class="text-xs text-sage-400 mb-1">Request</p>
+          <div class="bg-sage-50 border border-sage-100 rounded-lg px-4 py-2.5 font-mono text-xs text-sage-600 break-all" id="demo-url"></div>
+        </div>
+        <div id="demo-response" class="hidden">
+          <p class="text-xs text-sage-400 mb-1">Response</p>
+          <pre id="demo-json" class="bg-sage-900 rounded-lg px-4 py-3 text-xs font-mono text-sky-300 leading-6 overflow-x-auto"></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-sage-100 py-8">
+  <div class="max-w-5xl mx-auto px-6 flex items-center justify-between flex-wrap gap-3">
+    <a href="https://takaosan.app" class="font-serif text-sage-400 hover:text-sage-600 transition-colors">from takaosan.app</a>
+    <p class="text-xs text-gray-400">© 2025 tko3servs · <a href="mailto:hello@takaosan.app" class="text-sage-400 hover:underline">hello@takaosan.app</a></p>
+  </div>
+</footer>
+
+<script>
+const fields = [
+  ['lat',          'number',  'リクエストした緯度'],
+  ['lon',          'number',  'リクエストした経度'],
+  ['radius_m',     'number',  '検索半径（m）'],
+  ['count',        'number',  '結果件数'],
+  ['api_key_used', 'boolean', 'APIキー使用フラグ'],
+  ['osm_type',     'string',  'OSMオブジェクト種別（node / way / relation）'],
+  ['osm_id',       'number',  'OpenStreetMap ID'],
+  ['name',         'string',  'スポット名'],
+  ['category',     'string',  'カテゴリ（park / playground など）'],
+  ['distance_m',   'number',  '指定地点からの距離（m）'],
+  ['lat',          'number',  'スポットの緯度'],
+  ['lon',          'number',  'スポットの経度'],
+];
+
+document.getElementById('response-fields').innerHTML = fields.map(([f,t,d]) => `
+  <tr>
+    <td class="px-5 py-3 font-mono text-sage-700 text-xs">${f}</td>
+    <td class="px-5 py-3 text-xs"><span class="text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">${t}</span></td>
+    <td class="px-5 py-3 text-sage-500 text-xs">${d}</td>
+  </tr>`).join('');
+
+function useCurrentLocation() {
+  if (!navigator.geolocation) {
+    alert('お使いのブラウザは位置情報に対応していません。');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      document.getElementById('demo-lat').value = pos.coords.latitude.toFixed(6);
+      document.getElementById('demo-lon').value = pos.coords.longitude.toFixed(6);
+    },
+    () => alert('位置情報の取得に失敗しました。')
+  );
+}
+
+async function runDemo() {
+  const lat    = document.getElementById('demo-lat').value.trim();
+  const lon    = document.getElementById('demo-lon').value.trim();
+  const radius = document.getElementById('demo-radius').value.trim();
+  const limit  = document.getElementById('demo-limit').value.trim();
+  if (!lat || !lon) { alert('緯度と経度を入力してください。'); return; }
+
+  const params = new URLSearchParams({ lat, lon });
+  if (radius) params.set('radius', radius);
+  if (limit)  params.set('limit', limit);
+  const url = `https://api.tko3servs.com/spots?${params}`;
+
+  document.getElementById('demo-url').textContent = url;
+  document.getElementById('demo-request').classList.remove('hidden');
+  document.getElementById('demo-response').classList.add('hidden');
+  try {
+    const res  = await fetch(url);
+    const data = await res.json();
+    document.getElementById('demo-json').textContent = JSON.stringify(data, null, 2);
+    document.getElementById('demo-response').classList.remove('hidden');
+  } catch(e) {
+    document.getElementById('demo-json').textContent = 'Error: ' + e.message;
+    document.getElementById('demo-response').classList.remove('hidden');
+  }
+}
+</script>
+</body>
+</html>
